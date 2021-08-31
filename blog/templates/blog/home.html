@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %} {%load static %} {% block content %}
+<div class="col-sm-10 m-auto">
+  <p class="h1  border-bottom text-center pb-4 mt-4">Blog Posts</p>
+  {% for post in hpost %}
+  <div class="d-flex justify-content-center align-items-md-stretch my-5">
+    
+    <div class="col-md-10">
+      <div class="h-100 p-5 text-white bg-dark rounded-3">
+      
+        <h1 class="display-5 ">{{post.title}}</h1>
+        
+        <p class="pt-3"> <small>  {{post.desc |truncatewords:10 }}</small></p>
+        <a href="{%url 'showpost' post.pk %}" class="btn btn-outline-light btn-sm">Read More</a>
+              
+      </div>     
+    </div>   
+    
+  </div>  
+  {% endfor %}
+</div>
+
+{% endblock content %}

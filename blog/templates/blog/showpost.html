@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %} {%load static %}
+ {% block content %}
+      
+<div class="col-md-12 m-auto">
+  <div class="h-100 p-5 mt-5  rounded-3">
+
+    <h1 class="display-5 ">{{post.title}}</h1>
+    
+    <p class="pt-3"> <small class="text-justify">  {{post.desc}}</small></p>
+          
+  </div>     
+</div>   
+     
+<div>
+  
+<hr>
+<h2 id="comments">Comments</h2>
+<div class="col-10">
+{% for comment in post.comment_set.all %}
+<div class="border p-3 my-3 bg-white ">
+<b class="text-danger text-capitalize">{{ comment.name }}</b> <small>{{ comment.created_on|timesince }} ago</small>
+<p class="mt-2">{{ comment.comment }}</p>
+</div>
+{% empty %}
+
+<p>Feel free to leave the first comment!</p>
+{% endfor %}
+</div>
+<hr>
+<h3>Add a comment</h3>
+ <div class="col-8 ">
+<form action="" method="post" class="my-5">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+
+  
+{% endblock content %}
